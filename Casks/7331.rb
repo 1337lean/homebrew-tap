@@ -34,6 +34,12 @@ cask "7331" do
 
   binary "7331"
 
+  postflight do
+    if OS.mac?
+      system_command "/usr/bin/xattr", args: ["-dr", "com.apple.quarantine", "#{staged_path}/7331"]
+    end
+  end
+
   # No zap stanza required
 
 end
